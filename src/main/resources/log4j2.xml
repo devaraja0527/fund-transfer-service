@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout>
+                <pattern>{"timeStamp":"%d","logLevel":"%-5p","methodName":"%t","className":"%c","message":"%enc{%m}{JSON}"}%n</pattern>
+            </PatternLayout>
+        </Console>
+        <RollingFile name="RollingFile"
+                     fileName="./logs/transfer-api-service.log"
+                     filePattern="./logs/$${date:yyyy-MM}/transfer-api-service-%d{-dd-MMMM-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <pattern>{"timeStamp":"%d","logLevel":"%-5p","methodName":"%t","className":"%c","message":"%enc{%m}{JSON}"}%n</pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="50MB" />
+                <TimeBasedTriggeringPolicy />
+            </Policies>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root>
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="RollingFile" />
+        </Root>
+        <Logger name="com.transfer.api"/>
+    </Loggers>
+</Configuration>

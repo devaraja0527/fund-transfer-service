@@ -2,10 +2,13 @@ package com.transfer.api.utility;
 
 import static com.transfer.api.utility.TransferAPIServiceConstants.ACCOUNT_NOT_EXISTS;
 import static com.transfer.api.utility.TransferAPIServiceConstants.ACCOUNT_NUMBER_LENGHT;
+import static com.transfer.api.utility.TransferAPIServiceConstants.DOUBLE_DECIMAL_DIGITS;
 import static com.transfer.api.utility.TransferAPIServiceConstants.INVALID_INPUT;
 import static com.transfer.api.utility.TransferAPIServiceConstants.IN_SUFFICENT_AMOUNT;
 import static com.transfer.api.utility.TransferAPIServiceConstants.NUMBERS_REGREX;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 
 import org.springframework.stereotype.Service;
@@ -54,4 +57,10 @@ public class CommonUtils {
 			throw new TransferAPIException(INVALID_INPUT);
 
 	}
+
+	public double roundedDouble(double input) {
+		BigDecimal bd = new BigDecimal(input).setScale(DOUBLE_DECIMAL_DIGITS, RoundingMode.HALF_UP);
+		return bd.doubleValue();
+	}
+
 }

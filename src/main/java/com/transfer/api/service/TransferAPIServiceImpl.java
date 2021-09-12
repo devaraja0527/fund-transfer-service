@@ -64,7 +64,7 @@ public class TransferAPIServiceImpl implements TransferAPIService {
 				accountRepository.save(sourceAccount);
 
 				transactionResponse = new TransactionResponse((existingTansId + 1), sourceAccount.getAccountNumber(),
-						sourceAcctBalance, localDateTime);
+						commonUtils.roundedDouble(sourceAcctBalance), localDateTime);
 
 			}
 		}
@@ -93,7 +93,7 @@ public class TransferAPIServiceImpl implements TransferAPIService {
 			accountRepository.save(sourceAccount);
 
 			transactionResponse = new TransactionResponse((existingTansId + 1), sourceAccount.getAccountNumber(),
-					newbalance, localDateTime);
+					commonUtils.roundedDouble(newbalance), localDateTime);
 
 		}
 		return transactionResponse;

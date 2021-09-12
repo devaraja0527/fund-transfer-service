@@ -23,4 +23,6 @@ public class TransferAPIServiceConstants {
 	public static final String NUMBERS_REGREX = "\\d+";
 
 	public static final String DATE_TIME_FORMATE = "yyyy-MM-dd HH:mm:ss.SSS";
+
+	public static final int DOUBLE_DECIMAL_DIGITS = 2;
 }

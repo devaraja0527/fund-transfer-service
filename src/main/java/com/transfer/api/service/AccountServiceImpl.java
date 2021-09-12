@@ -55,8 +55,10 @@ public class AccountServiceImpl implements AccountService {
 			throw new TransferAPIException(INVALID_INPUT);
 
 		Account sourceAccount = accountRepository.findByAccountNumber(accountNumber);
-		if (commonUtils.isAccountNumberMatching(sourceAccount, accountNumber, SOURCE))
+		if (commonUtils.isAccountNumberMatching(sourceAccount, accountNumber, SOURCE)) {
 			account = sourceAccount;
+			account.setBalance(commonUtils.roundedDouble(account.getBalance()));
+		}
 
 		return account;
 	}
